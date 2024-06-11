@@ -14,18 +14,10 @@ def add_layer_to_map(df, mdb_path, dataset):
         layer_path = os.path.join(mdb_path, dataset)
         if arcpy.Exists(layer_path):
             layer_name = "{}_{}".format(os.path.basename(mdb_path).split('.')[0], dataset)
-            temp_layer = os.path.join("in_memory", layer_name)
-            # Create a feature layer from the dataset
-            arcpy.MakeFeatureLayer_management(layer_path, temp_layer)
-            
-            if arcpy.Exists(temp_layer):
-                layer = arcpy.mapping.Layer(temp_layer)
-                arcpy.mapping.AddLayer(df, layer, "BOTTOM")
-                print("Added {} from {}".format(dataset, mdb_path))
-                return layer
-            else:
-                print("Failed to create feature layer for {} from {}".format(dataset, mdb_path))
-                return None
+            layer = arcpy.mapping.Layer(layer_path)
+            arcpy.mapping.AddLayer(df, layer, "BOTTOM")
+            print("Added {} from {}".format(dataset, mdb_path))
+            return layer
         else:
             print("Dataset {} does not exist in {}".format(dataset, mdb_path))
             return None

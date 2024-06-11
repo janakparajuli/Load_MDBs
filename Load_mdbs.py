@@ -49,7 +49,6 @@ for vdc_folder in os.listdir(root_directory):
                         else:
                             print("No datasets found in {}".format(mdb_path))
 
-
 # Save the MXD document if needed
 mxd.saveACopy(r'E:\PROFESSION\GO\Chitawan_SO\BharatpurMetropolitan\Load_mdbs_saved.mxd')
 

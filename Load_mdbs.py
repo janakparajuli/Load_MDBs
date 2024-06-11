@@ -33,6 +33,7 @@ def organize_layers_into_groups(df):
         vdc_groups = {}
 
         for layer in layers:
+            print("Processing layer:", layer.name)
             if not layer.isGroupLayer:
                 vdc_name = layer.name.split('_')[0]
                 if vdc_name not in vdc_groups:

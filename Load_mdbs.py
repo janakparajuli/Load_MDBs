@@ -26,27 +26,6 @@ def add_layer_to_map(df, mdb_path, dataset, vdc_name, ward_name):
         print("Failed to add {} from {}: {}".format(dataset, mdb_path, str(e)))
         return None
 
-def organize_layers_into_groups(df):
-    """Organize layers into group layers based on VDC."""
-    try:
-        layers = arcpy.mapping.ListLayers(mxd, "", df)
-        vdc_groups = {}
-
-        for layer in layers:
-            print("Processing layer:", layer.name)
-            if not layer.isGroupLayer:
-                vdc_name = layer.name.split('_')[0]
-                if vdc_name not in vdc_groups:
-                    # Create a new group layer
-                    group_layer = arcpy.mapping.Layer()
-                    group_layer.name = vdc_name + "_Group"
-                    arcpy.mapping.AddLayer(df, group_layer, "BOTTOM")
-                    vdc_groups[vdc_name] = group_layer
-                # Move the layer to the respective group layer
-                arcpy.mapping.MoveLayer(vdc_groups[vdc_name], layer, "BOTTOM")
-    except Exception as e:
-        print("Error organizing layers into groups:", str(e))
-
 # Traverse the directory to find .mdb files and add them to the map
 for vdc_folder in os.listdir(root_directory):
     vdc_path = os.path.join(root_directory, vdc_folder)
@@ -70,8 +49,6 @@ for vdc_folder in os.listdir(root_directory):
                         else:
                             print("No datasets found in {}".format(mdb_path))
 
-# Organize added layers into group layers
-organize_layers_into_groups(df)
 
 # Save the MXD document if needed
 mxd.saveACopy(r'E:\PROFESSION\GO\Chitawan_SO\BharatpurMetropolitan\Load_mdbs_saved.mxd')

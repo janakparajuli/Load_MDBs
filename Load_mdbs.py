@@ -2,7 +2,7 @@ import arcpy
 import os
 
 # Define the root directory where VDC folders are located
-root_directory = r'E:\PROFESSION\GO\Chitawan_SO\BharatpurMetropolitan'
+root_directory = r'E:\PROFESSION\GO\Chitawan_SO\BharatpurMetropolitan\Load_MDBs'
 
 # Initialize ArcMap document
 mxd = arcpy.mapping.MapDocument(r"E:\PROFESSION\GO\Chitawan_SO\BharatpurMetropolitan\Load_mdbs.mxd")

@@ -2,10 +2,10 @@ import arcpy
 import os
 
 # Define the root directory where VDC folders are located
-root_directory = r'E:\PROFESSION\GO\Chitawan_SO\BharatpurMetropolitan\Load_MDBs'
+root_directory = r'path_to_MDBs\Load_MDBs'
 
 # Initialize ArcMap document
-mxd = arcpy.mapping.MapDocument(r"E:\PROFESSION\GO\Chitawan_SO\BharatpurMetropolitan\Load_mdbs.mxd")
+mxd = arcpy.mapping.MapDocument(r"path_to_mxd\Load_mdbs.mxd")
 df = arcpy.mapping.ListDataFrames(mxd)[0]
 
 def add_layer_to_map(df, mdb_path, dataset, vdc_name, ward_name):
@@ -50,6 +50,6 @@ for vdc_folder in os.listdir(root_directory):
                             print("No datasets found in {}".format(mdb_path))
 
 # Save the MXD document if needed
-mxd.saveACopy(r'E:\PROFESSION\GO\Chitawan_SO\BharatpurMetropolitan\Load_mdbs_saved.mxd')
+mxd.saveACopy(r'path_to_mxd\Load_mdbs_saved.mxd')
 
 print("Process Completed")

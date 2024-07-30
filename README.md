@@ -1,4 +1,4 @@
-# Load_MDBs
+# Load Multiple MDBs in an ArcMAP
 
 Arrange your folder as:
 
